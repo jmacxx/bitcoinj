@@ -879,6 +879,7 @@ public class PeerGroup implements TransactionBroadcaster {
             }
             backoffMap.put(peerAddress, new ExponentialBackoff(peerBackoffParams));
             inactives.offer(peerAddress);
+
             return true;
         } finally {
             lock.unlock();
@@ -1664,7 +1665,16 @@ public class PeerGroup implements TransactionBroadcaster {
             } else {
                 backoffMap.get(address).trackFailure();
                 // Put back on inactive list
-                inactives.offer(address);
+                boolean inactiveContainsAddress = false;
+                for (PeerAddress a : inactives) {
+                    if (a.equalsIgnoringMetadata(address)) {
+                        inactiveContainsAddress = true;
+                        break;
+                    }
+                }
+                if (!inactiveContainsAddress) {
+                    inactives.offer(address);
+                }
             }
 
             if (numPeers < getMaxConnections()) {
