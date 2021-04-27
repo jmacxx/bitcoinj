@@ -33,16 +33,16 @@ public class RegTestParams extends AbstractBitcoinNetParams {
         super();
         packetMagic = 0xfabfb5daL;
         addressHeader = 111;
-        p2shHeader = 196;
+        p2shHeader = 58;
         targetTimespan = TARGET_TIMESPAN;
         dumpedPrivateKeyHeader = 239;
-        segwitAddressHrp = "bcrt";
-        genesisBlock.setTime(1296688602L);
-        genesisBlock.setDifficultyTarget(0x1d07fff8L);
-        genesisBlock.setNonce(384568319);
+        segwitAddressHrp = "rltc";
+        genesisBlock.setTime(0x4d49e5da);
+        genesisBlock.setDifficultyTarget(0x207fFFFFL);
+        genesisBlock.setNonce(0);
         spendableCoinbaseDepth = 100;
         String genesisHash = genesisBlock.getHashAsString();
-        checkState(genesisHash.equals("00000007199508e34a9ff81e6ec0c477a4cccff2a4767a8eee39c11db367b008"));
+        checkState(genesisHash.toLowerCase().equals("530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9")); // LTC
         dnsSeeds = null;
         addrSeeds = null;
         bip32HeaderP2PKHpub = 0x043587cf; // The 4 byte header that serializes in base58 to "tpub".
@@ -56,7 +56,7 @@ public class RegTestParams extends AbstractBitcoinNetParams {
         interval = Integer.MAX_VALUE;
         maxTarget = MAX_TARGET;
         subsidyDecreaseBlockCount = 150;
-        port = 18444;
+        port = 19444;
         id = ID_REGTEST;
 
         majorityEnforceBlockUpgrade = MainNetParams.MAINNET_MAJORITY_ENFORCE_BLOCK_UPGRADE;
@@ -76,10 +76,7 @@ public class RegTestParams extends AbstractBitcoinNetParams {
         synchronized (RegTestParams.class) {
             if (genesis == null) {
                 genesis = super.getGenesisBlock();
-                genesis.setNonce(2);
-                genesis.setDifficultyTarget(0x207fFFFFL);
-                genesis.setTime(1296688602L);
-                checkState(genesis.getHashAsString().toLowerCase().equals("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
+                checkState(genesis.getHashAsString().toLowerCase().equals("530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9")); // LTC
             }
             return genesis;
         }
