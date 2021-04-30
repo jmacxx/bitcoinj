@@ -118,9 +118,7 @@ public abstract class NetworkParameters {
         Block genesisBlock = new Block(n, Block.BLOCK_VERSION_GENESIS);
         Transaction t = new Transaction(n);
         try {
-            // A script containing the difficulty bits and the following message:
-            //
-            //   "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
+            // A script containing the difficulty bits and the genesis message:
             byte[] bytes = Utils.HEX.decode
                     ("04ffff001d0104404e592054696d65732030352f4f63742f32303131205374657665204a6f62732c204170706c65e280997320566973696f6e6172792c2044696573206174203536");
             t.addInput(new TransactionInput(n, t, bytes));

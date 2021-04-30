@@ -3,8 +3,9 @@ apply plugin: 'com.google.protobuf'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
 
-version = '0.15.8.bisq.13'
-archivesBaseName = 'bitcoinj-core'
+version = 'jmacxx-LTC'
+archivesBaseName = 'bitcoinj'
+group = 'com.github.bisq-network'
 eclipse.project.name = 'bitcoinj-core'
 
 dependencies {
